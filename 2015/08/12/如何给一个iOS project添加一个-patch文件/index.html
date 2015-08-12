@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2015 | 木木阳的博客</title>
+  <title>如何给一个iOSproject添加一个.patch文件 | 木木阳的博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -223,76 +223,63 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/12/如何给一个iOS project添加一个-patch文件/">如何给一个iOSproject添加一个.patch文件</a></h4>
-                            
-                            <p><time datetime="2015-08-12T08:56:53.000Z"><a href="/2015/08/12/如何给一个iOS project添加一个-patch文件/">2015-08-12</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/10/如何利用github-pages-和-Hexo-搭建博客/">如何利用github pages 和 Hexo 搭建博客</a></h4>
-                            
-                            <p><time datetime="2015-08-10T14:51:51.000Z"><a href="/2015/08/10/如何利用github-pages-和-Hexo-搭建博客/">2015-08-10</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/10/jdbc连接数据库/">jdbc连接数据库</a></h4>
-                            
-                            <p><time datetime="2015-08-10T08:46:32.000Z"><a href="/2015/08/10/jdbc连接数据库/">2015-08-10</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/08/IntelliJ-常用快捷键/">IntelliJ 常用快捷键</a></h4>
-                            
-                            <p><time datetime="2015-08-08T15:21:43.000Z"><a href="/2015/08/08/IntelliJ-常用快捷键/">2015-08-08</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/06/hello-world/">Hello World</a></h4>
-                            
-                            <p><time datetime="2015-08-06T11:46:05.000Z"><a href="/2015/08/06/hello-world/">2015-08-06</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-08-12T08:56:53.000Z" itemprop="datePublished">
+          2015-08-12
+      </time>
+    
+    
+    | 
+    <a href='/tags/iOS开发/'>iOS开发</a>
+    
+    
+</span>
+                <h1>如何给一个iOSproject添加一个.patch文件</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="如何添加？">如何添加？</h2><p><img src="/img/createPatchFile.png" alt="Alt 添加文件"></p>
+<p>一般会放在Supporting Files文件夹下</p>
+<h2 id="有什么作用？">有什么作用？</h2><p> -Prefix.pch结尾文件的文件，pch全称是“precompiled header”，也就是预编译头文件，该文件里存放的工程中一些不常被修改的代码，比如常用的框架头文件，这样做的目的提高编译器编译速度。我们知道当我们修改一个工程中某个文件代码时候，编译器并不是重新编译所有所有文件，而是编译改动过文件的，假如pch中某个文件修改了，那么pch整个文件里包含的的其他文件也会重新编译一次，这样就会消耗大量时间，所以它里面添加的文件最好是是很少变动或不变动的头文件或者是预编译的代码片段；<br>举两个简单的例子<br>1.添加.patch文件后，就可以在此文件中声明一些micro（宏），这样全局都可以使用。<br>比如</p>
+<pre><code><span class="hexcolor">#def</span>ine  SCREEN_HEIGHT [UIScreen mainScreen]<span class="class">.bounds</span><span class="class">.size</span><span class="class">.height</span>
+</code></pre><p>这样你想使用屏幕的高度时，如下写即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSLog(<span class="string">"屏幕高度 %f"</span>, SCREEN_HEIGHT);</span><br></pre></td></tr></table></figure>
+<p>2.写了如下代码后，你就不需要在每个viewcontroller的.h或者.m上导入这两个包了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifdef __OBJC__</span></span><br><span class="line"><span class="comment">#import &lt;UIKit/UIKit.h&gt;</span></span><br><span class="line"><span class="comment">#import &lt;Foundation/Foundation.h&gt;</span></span><br><span class="line"><span class="comment">#endif</span></span><br></pre></td></tr></table></figure></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>连世界都没观过，哪来的世界观？</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/08/10/如何利用github-pages-和-Hexo-搭建博客/">
+        如何利用github pages 和 Hexo 搭建博客 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/08/12/如何给一个iOS project添加一个-patch文件/" data-title="如何给一个iOSproject添加一个.patch文件" data-url="http://yoursite.com/2015/08/12/如何给一个iOS project添加一个-patch文件/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mumuyang1"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
