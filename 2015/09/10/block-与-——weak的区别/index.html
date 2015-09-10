@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2015 | 木木阳的博客</title>
+  <title>__block 和 __weak的使用 | 木木阳的博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -238,85 +238,61 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/09/10/block-与-——weak的区别/">__block 和 __weak的使用</a></h4>
-                            
-                            <p><time datetime="2015-09-10T03:51:27.000Z"><a href="/2015/09/10/block-与-——weak的区别/">2015-09-10</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/12/如何给一个iOS project添加一个-patch文件/">如何给一个iOSproject添加一个.patch文件</a></h4>
-                            
-                            <p><time datetime="2015-08-12T08:56:53.000Z"><a href="/2015/08/12/如何给一个iOS project添加一个-patch文件/">2015-08-12</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/10/如何利用github-pages-和-Hexo-搭建博客/">如何利用github pages 和 Hexo 搭建博客</a></h4>
-                            
-                            <p><time datetime="2015-08-10T14:51:51.000Z"><a href="/2015/08/10/如何利用github-pages-和-Hexo-搭建博客/">2015-08-10</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/10/jdbc连接数据库/">jdbc连接数据库</a></h4>
-                            
-                            <p><time datetime="2015-08-10T08:46:32.000Z"><a href="/2015/08/10/jdbc连接数据库/">2015-08-10</a></time></p>
-                        </div>
-                    
-                        
-                            </div><div class="row boxes">
-                            
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/08/IntelliJ-常用快捷键/">IntelliJ 常用快捷键</a></h4>
-                            
-                            <p><time datetime="2015-08-08T15:21:43.000Z"><a href="/2015/08/08/IntelliJ-常用快捷键/">2015-08-08</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/08/06/hello-world/">Hello World</a></h4>
-                            
-                            <p><time datetime="2015-08-06T11:46:05.000Z"><a href="/2015/08/06/hello-world/">2015-08-06</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2015-09-10T03:51:27.000Z" itemprop="datePublished">
+          2015-09-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/Objective-c/'>Objective-c</a>
+    
+    
+</span>
+                <h1>__block 和 __weak的使用</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="使用__block的使用场景">使用__block的使用场景</h2><p>&emsp;&emsp;&nbsp;在block外声明的变量，在block中是可以使用的但是是只读的。<br>如下面的代码，在block中可以获取stoppedEarly的值，但是不能改变它的值。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> stoppedEarly = <span class="literal">NO</span>;</span><br><span class="line"><span class="keyword">double</span> stopValue = <span class="number">53.2</span>;</span><br><span class="line">[aDictionary enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> value, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value for %@ is %@"</span>, key ,value);</span><br><span class="line">    <span class="keyword">if</span>([<span class="string">@"ENOUGH"</span> isEqualToString:key] || ([value doubleValue] == stopValue))&#123;</span><br><span class="line">        *stop = <span class="literal">YES</span>;</span><br><span class="line">        stoppedEarly = <span class="literal">YES</span>;  <span class="comment">// is illegal</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&nbsp;如果想在block中改变局部变量的值，就在local variable 前加上<strong>block，编译器会自<br>己生成一段代码，将局部变量从栈中移动到堆中，block结束之后再复制一份到堆中再放到栈中。但是使用</strong>block 的变量有两个限制:它们不能是可变长的数组,并且它们不能是包含有 C99 可变长度的数组变量的数据结构。<br>如下：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> __block <span class="built_in">BOOL</span> stoppedEarly = <span class="literal">NO</span>;</span><br><span class="line"><span class="keyword">double</span> stopValue = <span class="number">53.2</span>;</span><br><span class="line"></span><br><span class="line">[aDictionary enumerateKeysAndObjectsUsingBlock:^(<span class="keyword">id</span> key, <span class="keyword">id</span> value, <span class="built_in">BOOL</span> *stop) &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"value for %@ is %@"</span>, key ,value);</span><br><span class="line">    <span class="keyword">if</span>([<span class="string">@"ENOUGH"</span> isEqualToString:key] || ([value doubleValue] == stopValue))&#123;</span><br><span class="line">        *stop = <span class="literal">YES</span>;</span><br><span class="line">        stoppedEarly = <span class="literal">YES</span>;  <span class="comment">// is legal</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用__weak的场景">使用__weak的场景</h2><p>&emsp;&emsp;&nbsp;在block中引用的对象都存在堆中，只要堆存在，这些对象都会存在。换句话说，block对他所包含的所有对象的都有强引用。<br>在下面的例子中，self是block中的一个对象，所以block对self有强引用。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="keyword">self</span><span class="variable">.myBlocks</span> addObject:^&#123;</span><br><span class="line">    [<span class="keyword">self</span> doSomething];</span><br><span class="line"> &#125;];</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;&nbsp;而在这个例子中，self也有一个强指针指向block（在myBlocks array中）。在这种情况下，二者（block和self）对彼此都有强指针引用，都无法从栈中释放，这种现象叫做Memory Cycles,会造成内存泄露。<br>内存泄露的危害 <a href="http://blog.csdn.net/yangyangzhang1990/article/details/41650459" target="_blank" rel="external">http://blog.csdn.net/yangyangzhang1990/article/details/41650459</a>.<br>解决方法：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__<span class="keyword">weak</span> MyObject *weakSelf = <span class="keyword">self</span>;</span><br><span class="line"></span><br><span class="line">[<span class="keyword">self</span><span class="variable">.myBlocks</span> addObject:^&#123;ddddd</span><br><span class="line">    [weakSelf doSomething];</span><br><span class="line"> &#125;];</span><br></pre></td></tr></table></figure></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>连世界都没观过，哪来的世界观？</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2015/08/12/如何给一个iOS project添加一个-patch文件/">
+        如何给一个iOSproject添加一个.patch文件 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2015/09/10/block-与-——weak的区别/" data-title="__block 和 __weak的使用" data-url="http://yoursite.com/2015/09/10/block-与-——weak的区别/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mumuyang1"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
