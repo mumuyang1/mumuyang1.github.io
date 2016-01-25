@@ -254,7 +254,30 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<blockquote>
+<p>AngularJS 是的框架.<br>一个为动态WEB应用设计的结构框架(JavaScript)<br>有数据绑定 依赖注入可以省去很多繁琐的代码<br>使用不同的方法尝试去弥补HTML本身在构建应用方面的的不足<br>AngularJS通过使用我们称为标识符(directives)的结构，让浏览器能够识别新的语法。</p>
+</blockquote>
+<p>例如：</p>
+<ul>
+<li>使用双大括号语法进行数据绑定</li>
+<li>支持表单验证</li>
+<li>能将逻辑代码关联到相关的DOM元素上</li>
+<li>能将HTML分组成可充用的组件</li>
+</ul>
+<h5 id="主要文件">主要文件</h5><p>angular.min.js<br>angular-route.js  配置路由  在index.html中引入<br>app.js  里面写自己配置的路由</p>
+<p>index.html //需要引入app.js     以index.html为根路径</p>
+<h5 id="需要注意的几个点">需要注意的几个点</h5><ul>
+<li>用url访问时需要/#/</li>
+<li>因为在index.html中配置的ng-app 所以index为入口</li>
+</ul>
+<h2 id="如何使用？">如何使用？</h2><h3 id="安装angular_(三种方式)">安装angular (三种方式)</h3><ul>
+<li>去官方网站下载</li>
+<li>使用bower安装  命令  bower install angular  - -save-dev</li>
+<li>使用npm安装 命令 nam install angular  - -save-dev</li>
+</ul>
+<h3 id="创建index-html">创建index.html</h3><p><a href="https://segmentfault.com/a/1190000000350125" target="_blank" rel="external">https://segmentfault.com/a/1190000000350125</a><br>定义ng-app初始化angular 声明angular的边界 加在html 标签中 声明所有的都交给angular管理  声明在body element中说明在body中的部分交给angular管理  。如果想让angular只管理页面中的一部分只要在页面中放入一些<div> 之类的元素即可。然后加上 ng-app</div></p>
+<h3 id="配置路由">配置路由</h3><p>创建app.js<br>angular2.0后需要单独安装angular-route<br>    bower install angular-route –save-dev</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
