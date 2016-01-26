@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2015/9 | 木木阳的博客</title>
+  <title>jshint 使用 | 木木阳的博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -242,37 +242,82 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2015/09/10/block-与-——weak的区别/">__block 和 __weak的使用</a></h4>
-                            
-                            <p><time datetime="2015-09-10T03:51:27.000Z"><a href="/2015/09/10/block-与-——weak的区别/">2015-09-10</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-01-26T14:05:16.000Z" itemprop="datePublished">
+          2016-01-26
+      </time>
+    
+    
+    | 
+    <a href='/tags/js/'>js</a>
+    
+    
+</span>
+                <h1>jshint 使用</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>jshint</p>
+<blockquote>
+<p>jshint是一个JavaScript代码的检查工具。</p>
+</blockquote>
+<p>比如你希望确保你的代码中不会出现定义了确没有用的变量，都使用单引号，该写分号的地方都写上分号等等等等。jshint就是这样一些工具，根据你的配置检查你的js代码，找出不符合要求的地方。</p>
+<h3 id="安装">安装</h3><pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> jshint</span>
+</code></pre><p>安装后比如你想检查你的demo.js文件</p>
+<pre><code><span class="comment">// demo.js</span>
+<span class="variable"><span class="keyword">var</span> a</span> = <span class="number">1</span>;
+<span class="variable"><span class="keyword">var</span> b</span> = <span class="number">2</span>
+<span class="variable"><span class="keyword">var</span> c</span> = a + b;
+</code></pre><p>运行</p>
+<pre><code>➜  jshint demo<span class="class">.js</span>
+demo<span class="class">.js</span>: line <span class="number">2</span>, col <span class="number">10</span>, Missing semicolon.
+<span class="number">1</span> error
+</code></pre><h3 id="配置">配置</h3><p>新建文件配置文件<code>.jshintrc</code>，在这个文件里可以写上你自己的配置。</p>
+<h4 id="一些配置选项">一些配置选项</h4><p><code>curly</code><br>使用循环或者条件语句必须使用花括号包起来</p>
+<p><code>newcap</code><br>构造函数首字母大写</p>
+<p><code>noarg</code><br>禁止使用 arguments.caller 和 arguments.callee，未来会被弃用， ECMAScript 5 禁止使用 arguments.callee</p>
+<p><code>multistr</code><br>检查多行字符串</p>
+<p><code>eqeqeq</code><br>如果为真，比较时必须使用<code>!==</code> 或者 <code>===</code> 而不是<code>!=</code> 或者 <code>==</code></p>
+<p><code>quotmark</code><br>值可以为<code>&quot;double&quot;</code>或者<code>&quot;single&quot;</code>表示只能使用双引号或者单引号</p>
+<p><code>latedef</code><br>如果值为true的话应该先声明函数或变量等，然后再使用。</p>
+<p><code>strict</code><br>值为真时，表示code运行在严格模式下。需要加<code>&#39;use strict&#39;;</code></p>
+<p><code>globals</code><br>这个选项可以用于指定一些我们在代码中非正常声明的全局变量。如果值为true的时候允许读写这个变量，<br>值为false的话是只读的。</p>
+<p>更多请戳官网 <a href="http://jshint.com/docs/options/" target="_blank" rel="external">http://jshint.com/docs/options/</a><br>发现一个总结的很好的文章<a href="http://jinlong.github.io/2014/10/25/jshint-configuration/" target="_blank" rel="external">http://jinlong.github.io/2014/10/25/jshint-configuration/</a></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>连世界都没观过，哪来的世界观？</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/01/25/Angularjs/">
+        Angularjs →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/01/26/jshint-使用/" data-title="jshint 使用" data-url="http://yoursite.com/2016/01/26/jshint-使用/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"mumuyang1"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 

@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>木木阳的博客</title>
+  <title>如何快速搭建Web前端应用 | 木木阳的博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -121,6 +121,8 @@
 				    <li><a href="/categories/Swift/" class="animsition-link">Swift<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/iOS/" class="animsition-link">iOS<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/工具/" class="animsition-link">工具<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/快捷键/" class="animsition-link">快捷键<small>(1)</small></a></li>
 				    
@@ -255,22 +257,17 @@
     
     
 </span>
-                <h1></h1>
+                <h1>如何快速搭建Web前端应用</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<h3 id="所用到的技术">所用到的技术</h3><ul>
-<li>JavaScript</li>
 <li>jQuery</li>
 <li>BootStrap</li>
+<li>Angularjs</li>
 <li>构建工具 gulp</li>
-<li>js 框架</li>
+<li>npm 和 bower</li>
 </ul>
-<h3 id="JavaScript">JavaScript</h3><p>匿名函数 闭包</p>
-<h3 id="Bootstrap">Bootstrap</h3><blockquote>
-<p>Bootstrap是HTML，CSS和JS的响应式设计的Web框架。</p>
-</blockquote>
-<p>源码是基于CSS预处理脚本<code>Less</code> 和<code>Sass</code>开发的，如果不想写CSS的话就可以使用他提供的一些样式和<br>组件。</p>
 <h3 id="jQuery">jQuery</h3><blockquote>
 <p>jQuery是一个封装了Javascript的的轻量的库。让JavaScript操作DOM（Document Object Model）变得简单。并且解决了很多跨浏览器的兼容问题。</p>
 </blockquote>
@@ -278,9 +275,17 @@
 <li>操纵DOM（以面向对象方式描述的文档模型，文档访问方式）</li>
 <li>制作动画效果</li>
 <li>事件处理</li>
-<li>Ajax请求<br><a href="http://www.w3schools.com/jquery/jquery_intro.asp" target="_blank" rel="external">http://www.w3schools.com/jquery/jquery_intro.asp</a></li>
+<li>Ajax请求</li>
 </ul>
-<h3 id="Angularjs">Angularjs</h3><p>因为使用了angular使用uglify压缩js文件后会破坏angular的依赖注入。所以我们可以用另一个插件<br><code>ng-annoate</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url: <span class="string">"/api/getWeather"</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    zipcode: <span class="number">97201</span></span><br><span class="line">  &#125;,</span><br><span class="line">  success: <span class="function"><span class="keyword">function</span>(<span class="params"> data </span>) </span>&#123;</span><br><span class="line">    $(<span class="string">"#weather-temp"</span>).html(<span class="string">"&lt;strong&gt;"</span> + data + <span class="string">"&lt;/strong&gt; degrees"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><a href="http://www.w3schools.com/jquery/jquery_intro.asp" target="_blank" rel="external">http://www.w3schools.com/jquery/jquery_intro.asp</a></p>
+<h3 id="Bootstrap">Bootstrap</h3><blockquote>
+<p>Bootstrap是HTML，CSS和JS的响应式设计的Web框架。</p>
+</blockquote>
+<p>源码是基于CSS预处理脚本<code>Less</code> 和<code>Sass</code>开发的.如果不想写CSS的话就可以使用他提供的一些样式和<br>组件。</p>
+<h3 id="Angularjs">Angularjs</h3><p><a href="http://mumuyang1.github.io/2016/01/25/Angularjs/" target="_blank" rel="external">http://mumuyang1.github.io/2016/01/25/Angularjs/</a><br>因为使用了angular使用uglify压缩js文件后会破坏angular的依赖注入。所以我们可以用另一个插件<br><code>ng-annoate</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">"MyMod"</span>).controller(<span class="string">"MyCtrl"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope, $timeout</span>) </span>&#123;</span><br><span class="line">    <span class="string">"ngInject"</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行ng-annotate<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">"MyMod"</span>).controller(<span class="string">"MyCtrl"</span>, [<span class="string">"$scope"</span>, <span class="string">"$timeout"</span>, <span class="keyword">function</span>(<span class="variable">$scope</span>, <span class="variable">$timeout</span>) &#123;</span><br><span class="line">    <span class="string">"ngInject"</span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;]);</span><br></pre></td></tr></table></figure></p>
 <h3 id="gulp">gulp</h3><blockquote>
 <p>gulp 是基于 node 实现 Web 前端自动化开发的构建工具。<br>基于流的自动化构建工具</p>
 </blockquote>
@@ -290,9 +295,25 @@
 <li>gulp有严格的插件确保指南。保证开发的插件高品质。</li>
 <li>通过最少的API就可以掌握它，构建工作尽在掌握，如图一系列的流管道。</li>
 </ul>
-<h5 id="gulp的API">gulp的API</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.src（）<span class="comment">// 返回一个可读的stream</span></span><br><span class="line">gulp.dest(path[, options])  <span class="comment">//返回一个可写的stream</span></span><br><span class="line">gulp.task(name[, deps], fn)</span><br><span class="line">gulp.watch(glob, fn) <span class="comment">//当global内容发生变化是执行fn</span></span><br><span class="line">gulp.run(tasks...) <span class="comment">//尽可能多的并行运行多个task</span></span><br></pre></td></tr></table></figure>
+<h5 id="gulp的API">gulp的API</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.src（）  <span class="comment">// 返回一个可读的stream</span></span><br><span class="line">gulp.dest(path[, options])   <span class="comment">//返回一个可写的stream</span></span><br><span class="line">gulp.task(name[, deps], fn)</span><br><span class="line">gulp.watch(glob, fn)    <span class="comment">//当global内容发生变化是执行fn</span></span><br><span class="line">gulp.run(tasks...)     <span class="comment">//尽可能多的并行运行多个task</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gulp.src(<span class="string">'spec/google.spec.js'</span>)</span><br><span class="line">    .pipe(jasmine());</span><br></pre></td></tr></table></figure>
+<p>什么是src和pipe?</p>
+<p>我们先看一个unix命令：</p>
+<p> cat gulpfile.js | wc -l</p>
+<p>这是两个独立的命令，cat gulpfile.js用来获取gulpfile.js的文件内容，wc -l用来统计文件中的行数，他们中间用“|”相连。把cat gulpfile.js的输出作为wc -l的输入。这是再常见不过的unix命令</p>
+<p>gulp中吸取了这样的想法，上面gulp命令可以想作：</p>
+<p> ‘spec/google.spec.js’ | jasmine()</p>
 <h3 id="Node-js">Node.js</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node.js 是基于Chrome V8引擎的 JS 的运行环境。基于C++使用事件驱动，非阻塞式I/O的模型。包管理器是npm。<br>单核单线程。<br>事件驱动机制是Node.js通过内部单线程高效率地维护事件循环队列来实现的，没有多线程的资源占用和上下文切换</p>
-<p><a href="http://www.runoob.com/nodejs/nodejs-http-server.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-http-server.html</a> –&gt;</p>
+<p><a href="http://www.runoob.com/nodejs/nodejs-http-server.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-http-server.html</a></p>
+<pre><code><span class="built_in">npm</span> start
+</code></pre><p>如果没有配置<code>npm start</code> node 会默认运行 <code>node server.js</code></p>
+<h3 id="npm">npm</h3><p>node的包管理工具</p>
+<h3 id="bower">bower</h3><blockquote>
+<p>web的包管理器</p>
+</blockquote>
+<h5 id="安装">安装</h5><pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> bower</span>
+</code></pre><p>bower的升级安装全部依赖于bower</p>
+<h5 id="npm_和_bower的区别">npm 和 bower的区别</h5><p>与NPM最大的区别在于，NPM主要运用于Node.js项目的内部依赖包管理，安装的模块位于项目根目录下的<br>node_modules文件夹内。而Bower大部分情况下用于前端开发，对于CSS/JS/模板等内容进行依赖管理，<br>依赖的下载目录结构可以自定义。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
@@ -311,7 +332,7 @@
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/01/04/如何快速搭建Web前端应用/" data-title="" data-url="http://yoursite.com/2016/01/04/如何快速搭建Web前端应用/"></div>
+<div class="ds-thread" data-thread-key="2016/01/04/如何快速搭建Web前端应用/" data-title="如何快速搭建Web前端应用" data-url="http://yoursite.com/2016/01/04/如何快速搭建Web前端应用/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"mumuyang1"};
 (function() {
