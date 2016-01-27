@@ -297,8 +297,7 @@
 </ul>
 <h5 id="gulp的API">gulp的API</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.src（）  <span class="comment">// 返回一个可读的stream</span></span><br><span class="line">gulp.dest(path[, options])   <span class="comment">//返回一个可写的stream</span></span><br><span class="line">gulp.task(name[, deps], fn)</span><br><span class="line">gulp.watch(glob, fn)    <span class="comment">//当global内容发生变化是执行fn</span></span><br><span class="line">gulp.run(tasks...)     <span class="comment">//尽可能多的并行运行多个task</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gulp.src(<span class="string">'spec/google.spec.js'</span>)</span><br><span class="line">    .pipe(jasmine());</span><br></pre></td></tr></table></figure>
-<p>什么是src和pipe?</p>
-<p>我们先看一个unix命令：</p>
+<h5 id="什么是src和pipe?">什么是src和pipe?</h5><p>我们先看一个unix命令：</p>
 <p> cat gulpfile.js | wc -l</p>
 <p>这是两个独立的命令，cat gulpfile.js用来获取gulpfile.js的文件内容，wc -l用来统计文件中的行数，他们中间用“|”相连。把cat gulpfile.js的输出作为wc -l的输入。这是再常见不过的unix命令</p>
 <p>gulp中吸取了这样的想法，上面gulp命令可以想作：</p>
