@@ -302,7 +302,7 @@
 <p> cat gulpfile.js | wc -l</p>
 <p>这是两个独立的命令，cat gulpfile.js用来获取gulpfile.js的文件内容，wc -l用来统计文件中的行数，他们中间用“|”相连。把cat gulpfile.js的输出作为wc -l的输入。这是再常见不过的unix命令</p>
 <p>gulp中吸取了这样的想法，上面gulp命令可以想作：</p>
-<p> ‘spec/google.spec.js’ | jasmine()</p>
+<p> ‘spec/google.spec.js’ | jasmine()  </p>
 <h3 id="Node-js">Node.js</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node.js 是基于Chrome V8引擎的 JS 的运行环境。基于C++使用事件驱动，非阻塞式I/O的模型。包管理器是npm。<br>单核单线程。<br>事件驱动机制是Node.js通过内部单线程高效率地维护事件循环队列来实现的，没有多线程的资源占用和上下文切换</p>
 <p><a href="http://www.runoob.com/nodejs/nodejs-http-server.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-http-server.html</a></p>
 <pre><code><span class="built_in">npm</span> start
@@ -311,7 +311,14 @@
 <h3 id="bower">bower</h3><blockquote>
 <p>web的包管理器</p>
 </blockquote>
-<h5 id="安装">安装</h5><pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> bower</span>
+<p>几个常用的命令</p>
+<pre><code>npm <span class="operator"><span class="keyword">install</span>             下载在<span class="keyword">package</span>.<span class="keyword">json</span> 中配置的依赖
+npm <span class="keyword">list</span>                列出已经安装的模块
+npm <span class="keyword">show</span> express        显示模块的详情
+npm <span class="keyword">update</span>              升级当前目录下项目的所有模块
+npm <span class="keyword">update</span> expresss     指定升级
+npm <span class="keyword">uninstall</span> express   删除已下载的模块</span>
+</code></pre><h5 id="安装">安装</h5><pre><code>npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> bower</span>
 </code></pre><p>bower的升级安装全部依赖于bower</p>
 <h5 id="npm_和_bower的区别">npm 和 bower的区别</h5><p>与NPM最大的区别在于，NPM主要运用于Node.js项目的内部依赖包管理，安装的模块位于项目根目录下的<br>node_modules文件夹内。而Bower大部分情况下用于前端开发，对于CSS/JS/模板等内容进行依赖管理，<br>依赖的下载目录结构可以自定义。</p>
 
